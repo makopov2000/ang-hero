@@ -1,0 +1,22 @@
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0
+}
+
+p {
+  font-family: Lato;
+}
+
+// For table's disabled input.
+.mat-input-element:disabled {
+  color: rgba(0, 0, 0, 1);
+}
+
+// For table's disabled mat-select.
+:host /deep/ .mat-select-disabled .mat-select-value-text {
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+:host /deep/ .mat-form-field-disabled .mat-form-field-underline {
+  background-image: none !important;
+}
