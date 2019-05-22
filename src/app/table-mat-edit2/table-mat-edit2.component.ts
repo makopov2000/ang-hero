@@ -16,7 +16,7 @@ export class TableMatEdit2Component implements OnInit {
   constructor(private adPipe: AspDatePipe, private cfgHttp: cHttpDataService) { };
 
   ngOnInit(): void {
-    //this.myDate = this.adPipe.transform('/Date(1479859200000)/', "MM/dd/yy");
+    this.myDate = this.adPipe.transform('/Date(1479859200000)/', "MM/dd/yy");
   };
 
   ngAfterViewInit() {

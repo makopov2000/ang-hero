@@ -37,14 +37,30 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button"
-              aria-label="Toggle sidenav"
-              mat-icon-button
-              (click)="drawer.toggle()"
-              *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>ang-hero</span>
+      <!--     NEW code Start                                    -->
+      <mat-toolbar-row>
+        <!--     NEW code End                                    -->
+        <button type="button"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>ang-hero</span>
+        <!--     NEW code Start                                    -->
+        <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+          <!--     NEW code END                                     -->
+          <ul fxLayout fxLayoutGap="35px" class="navigation-items">
+            <li>
+              <a routerLink="/owner/owners">Owner Actions</a>
+            </li>
+            <li>
+              <a routerLink="/account">Account Actions</a>
+            </li>
+          </ul>
+        </div>
+      </mat-toolbar-row>
     </mat-toolbar>
     <!-- Add Content Here -->
     <main>
