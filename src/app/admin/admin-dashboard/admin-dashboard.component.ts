@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,12 +14,59 @@ export class AdminDashboardComponent implements OnInit {
   titleAlert: string = 'This field is required';
   post: any = '';
 
+  ////////////////////////////////////////////
+  profileForm = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    address: this.formBuilder.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    }),
+    aliases: this.formBuilder.array([
+      this.formBuilder.control('')
+    ])
+  });
+
+  form: FormGroup;
+  /////////////////////////////////////
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.createForm();
     this.setChangeValidate()
+
+    this.form = this.formBuilder.group({
+      published: true,
+      firstName: ' ',
+      lastName: ' ',
+      credentials: this.formBuilder.array([]),
+    });
   }
+
+  /////////////////////////////////////////
+  get aliases() {
+    return this.profileForm.get('aliases') as FormArray;
+  }
+
+  addAlias() {
+    this.aliases.push(this.formBuilder.control(''));
+  }
+
+  addCreds() {
+    const creds = this.form.controls.credentials as FormArray;
+    creds.push(this.formBuilder.group({
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+    }));
+    console.table('==>> Form Control values: ' + this.form.value.firstName);
+    console.table('==>> Form Array row 1 values: ' + this.form.value.credentials[0].address1);
+  }
+  ///////////////////////////////////////////
 
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
