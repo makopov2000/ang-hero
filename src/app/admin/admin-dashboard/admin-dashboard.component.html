@@ -30,16 +30,17 @@
                 <input placeholder="Last Name" formControlName="lastName">
               </ng-container>
 
-              <div formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index">
-                <ng-container [formGroupName]="i">
-                  <input placeholder="Address Line 1" formControlName="address1" type="text">
-                  <input placeholder="Address Line 2" formControlName="address2">
-                  <input placeholder="City" formControlName="city">
-                  <input placeholder="State" formControlName="state">
-                </ng-container>
-              </div>
+              <!--<div formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index">-->
+                <div formArrayName="credentials" *ngFor="let creds of form.get('credentials').controls; let i = index">
+                  <ng-container [formGroupName]="i">
+                    <input placeholder="Address Line 1" formControlName="address1" type="text">
+                    <input placeholder="Address Line 2" formControlName="address2">
+                    <input placeholder="City" formControlName="city">
+                    <input placeholder="State" formControlName="state">
+                  </ng-container>
+                </div>
 
-            </div>
+              </div>
           </form>
 
           <div [formGroup]="orderForm">
