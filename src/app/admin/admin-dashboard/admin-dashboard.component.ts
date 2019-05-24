@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormArray } from '@angular/forms';
+import { FormArray, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -30,6 +30,10 @@ export class AdminDashboardComponent implements OnInit {
   });
 
   form: FormGroup;
+  
+  orderForm: FormGroup;
+  items: FormArray;
+
   /////////////////////////////////////
 
   constructor(private formBuilder: FormBuilder) { }
@@ -44,9 +48,29 @@ export class AdminDashboardComponent implements OnInit {
       lastName: ' ',
       credentials: this.formBuilder.array([]),
     });
+
+    this.orderForm = new FormGroup({
+      items: new FormArray([])
+    });
+
   }
 
   /////////////////////////////////////////
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      address1: '',
+      address2: '',
+      city: '',
+      state: ''
+    });
+  }
+
+  addItem(): void {
+    this.items = this.orderForm.get('items') as FormArray;
+    this.items.push(this.createItem());
+    //console.table('============================== >> Order form: ' + this.orderForm.get('items').get('address1').value);
+  }
+
   get aliases() {
     return this.profileForm.get('aliases') as FormArray;
   }
@@ -63,8 +87,6 @@ export class AdminDashboardComponent implements OnInit {
       city: '',
       state: '',
     }));
-    console.table('==>> Form Control values: ' + this.form.value.firstName);
-    console.table('==>> Form Array row 1 values: ' + this.form.value.credentials[0].address1);
   }
   ///////////////////////////////////////////
 

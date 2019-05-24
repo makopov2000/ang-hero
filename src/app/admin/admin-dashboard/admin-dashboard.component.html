@@ -27,12 +27,12 @@
 
               <ng-container>
                 <input placeholder="First Name" formControlName="firstName">
-                <input placeholder="Last Name"   formControlName="lastName">
+                <input placeholder="Last Name" formControlName="lastName">
               </ng-container>
 
               <div formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index">
                 <ng-container [formGroupName]="i">
-                  <input placeholder="Address Line 1" formControlName="address1">
+                  <input placeholder="Address Line 1" formControlName="address1" type="text">
                   <input placeholder="Address Line 2" formControlName="address2">
                   <input placeholder="City" formControlName="city">
                   <input placeholder="State" formControlName="state">
@@ -41,6 +41,22 @@
 
             </div>
           </form>
+
+          <div [formGroup]="orderForm">
+            <div formArrayName="items"
+                 *ngFor="let item of orderForm.get('items').controls; let i = index;">
+              <div [formGroupName]="i">
+                <input formControlName="address1" placeholder="Address 1">
+                <input formControlName="address2" placeholder="Address 2">
+                <input formControlName="city" placeholder="City">
+                <input formControlName="state" placeholder="State">
+              </div>
+
+              <!--Chosen name: {{ orderForm.controls.items.controls[i].name.value }}-->
+              Other name: {{ orderForm ?.value | json }}
+            </div>
+          </div>
+          <button (click)="addItem()">Add</button>
 
         </mat-card-content>
       </mat-card>
