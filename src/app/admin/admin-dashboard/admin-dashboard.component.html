@@ -18,12 +18,27 @@
         <mat-card-content class="dashboard-card-content">
           <div>Card Content Here</div>
 
+          <!--/////////////////////////////////////////////////////-->
+          <!--<button (click)="addTst()">Add</button>
+          <button (click)="getTst()">Get</button>
+          <div [formArrayName]="testArray" *ngFor="let tst of testArray.controls; let i = index">
+            <ng-container [formGroupName]="i">
+              <input placeholder="Address Line 1" formControlName="address1" type="text">
+              <input placeholder="Address Line 2" formControlName="address2">
+              <input placeholder="City" formControlName="city">
+              <input placeholder="State" formControlName="state">
+            </ng-container>
+          </div>-->
+
+          <!--///////////////////////////////////////////////-->
+
           <form [formGroup]="form">
             <input type="checkbox" formControlName="published"> Published
             <div *ngIf="form.controls.published.value">
 
               <h2>Credentials</h2>
               <button (click)="addCreds()">Add</button>
+              <button (click)="getCreds()">Get</button>
 
               <ng-container>
                 <input placeholder="First Name" formControlName="firstName">
@@ -31,16 +46,16 @@
               </ng-container>
 
               <!--<div formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index">-->
-                <div formArrayName="credentials" *ngFor="let creds of form.get('credentials').controls; let i = index">
-                  <ng-container [formGroupName]="i">
-                    <input placeholder="Address Line 1" formControlName="address1" type="text">
-                    <input placeholder="Address Line 2" formControlName="address2">
-                    <input placeholder="City" formControlName="city">
-                    <input placeholder="State" formControlName="state">
-                  </ng-container>
-                </div>
-
+              <div formArrayName="credentials" *ngFor="let creds of form.get('credentials').controls; let i = index">
+                <ng-container [formGroupName]="i">
+                  <input placeholder="Address Line 1" formControlName="address1" type="text">
+                  <input placeholder="Address Line 2" formControlName="address2">
+                  <input placeholder="City" formControlName="city">
+                  <input placeholder="State" formControlName="state">
+                </ng-container>
               </div>
+
+            </div>
           </form>
 
           <div [formGroup]="orderForm">

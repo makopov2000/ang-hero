@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormArray, Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
+
+export class Hero {
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+}
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,6 +20,7 @@ export class AdminDashboardComponent implements OnInit {
   formGroup: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
+  heroes: Hero[]
 
   ////////////////////////////////////////////
   profileForm = this.formBuilder.group({
@@ -34,6 +42,8 @@ export class AdminDashboardComponent implements OnInit {
   orderForm: FormGroup;
   items: FormArray;
 
+  testArray: FormArray;
+
   /////////////////////////////////////
 
   constructor(private formBuilder: FormBuilder) { }
@@ -53,9 +63,38 @@ export class AdminDashboardComponent implements OnInit {
       items: new FormArray([])
     });
 
+    this.testArray = new FormArray([]);
+
   }
 
   /////////////////////////////////////////
+
+
+  getTst() {
+    //const tst = this.testArray.values;
+    //console.table('==>> TST: ' + tst);
+    //let resString = JSON.stringify(tst);
+    //console.table('==>> TST FY: ' + resString);
+    //let resParse = JSON.parse(resString);
+    //console.table('==>> TST Parse: ' + resParse);
+    //this.heroes = resParse;
+    //this.heroes.forEach(h => {
+    //  console.table('==>> TST Heroes: ' + h.address1);
+    //  console.table('==>> TST Heroes: ' + h.city);
+    //  console.table('==>> TST Heroes: ' + h.state);
+    //});
+  }
+
+  addTst() {
+   
+    //this.testArray.push(this.formBuilder.group({
+    //  address11: '',
+    //  address12: '',
+    //  city1: '',
+    //  state1: '',
+    //}));
+  }
+
   createItem(): FormGroup {
     return this.formBuilder.group({
       address1: '',
@@ -68,7 +107,6 @@ export class AdminDashboardComponent implements OnInit {
   addItem(): void {
     this.items = this.orderForm.get('items') as FormArray;
     this.items.push(this.createItem());
-    //console.table('============================== >> Order form: ' + this.orderForm.get('items').get('address1').value);
   }
 
   get aliases() {
@@ -77,6 +115,21 @@ export class AdminDashboardComponent implements OnInit {
 
   addAlias() {
     this.aliases.push(this.formBuilder.control(''));
+  }
+
+  getCreds() {
+    const res = this.form.controls.credentials.value;
+    console.table('==>> Creds: ' + res);
+    let resString = JSON.stringify(res);
+    console.table('==>> StringFY: ' + resString);
+    let resParse = JSON.parse(resString);
+    console.table('==>> Parse: ' + resParse);
+    this.heroes = resParse;
+    this.heroes.forEach(h => {
+      console.table('==>> Heroes: ' + h.address1);
+      console.table('==>> Heroes: ' + h.city);
+      console.table('==>> Heroes: ' + h.state);
+    });
   }
 
   addCreds() {
