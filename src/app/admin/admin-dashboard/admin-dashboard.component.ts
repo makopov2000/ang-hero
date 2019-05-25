@@ -130,6 +130,13 @@ export class AdminDashboardComponent implements OnInit {
       console.table('==>> Heroes: ' + h.city);
       console.table('==>> Heroes: ' + h.state);
     });
+
+    console.log('=================Address:' + resParse[0].address1);
+
+    JSON.parse(resString, (k, v) => {
+
+    }
+    );
   }
 
   addCreds() {
