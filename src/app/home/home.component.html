@@ -55,45 +55,63 @@
 </div>
 
 <!--??????????????????????????????????????????????????????????-->
-<button (click)="setFormGroup2()" class="btn btn-primary">Dosplay Users</button><br><br>
-<button (click)="addNewUser()" class="btn btn-primary">Add new User</button><br><br>
+<br/><br/>
+<div class="container">
+  <main class="col-12">
+    <button (click)="setFormGroup2()" class="btn btn-primary">Dosplay Users</button>
+    <button (click)="addNewUser()" class="btn btn-primary">Add new User</button>
+
 <form [formGroup]="userFormData">
   <div formArrayName="users">
     <div *ngFor="let user of userFormData.controls.users.controls; let i=index">
-      <fieldset class="border p-2">
-        <legend class="w-auto"><h3>User {{i+1}}: </h3></legend>
-        <div [formGroupName]="i">
-          <label>User Name: </label>
-          <input formControlName="name" /><span><button (click)="deleteUser(i)">Delete User</button></span>
-          <div formArrayName="addresses">
-            <div *ngFor="let address of user.controls.addresses.controls; let j=index">
-              <fieldset>
-                <legend><h4>Address {{j+1}}</h4></legend>
-                <div [formGroupName]="j">
-                  <div><button (click)="deleteAddress(user.controls.addresses, j)">Delete Address</button></div>
-                  <!--<label>Address 1:</label>-->
-                  <input formControlName="address1" placeholder="Addres1"/>
-                                                      <!--<label>Address 2:</label>-->
-                  <input formControlName="address2" placeholder="Addres2"/>
-                                                      <!--<label>Address 3:</label>-->
-                  <input formControlName="address3" placeholder="Addres3"/>
-                  <!--<label>City:</label>-->
-                  <input formControlName="city" placeholder="City"/>
-                  <!--<label>State:</label>-->
-                  <input formControlName="state" placeholder="State"/>
-                  <!--<label>Zip:</label>-->
-                  <input formControlName="zip" placeholder="Zip"/>
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> User {{i+1}}: </strong></h3>
+          <!--<p>-->
+            <div [formGroupName]="i">
+              <label>User Name: </label>
+              <input formControlName="name" /><span><button (click)="deleteUser(i)">Delete User</button></span>
+              <div formArrayName="addresses">
+                <div *ngFor="let address of user.controls.addresses.controls; let j=index">
+                  <fieldset>
+                    <legend><h4>Address {{j+1}}</h4></legend>
+                    <div [formGroupName]="j">
+                      <div><button (click)="deleteAddress(user.controls.addresses, j)">Delete Address</button></div>
+                      <!--<label>Address 1:</label>-->
+                      <input formControlName="address1" placeholder="Addres1" />
+                      <!--<label>Address 2:</label>-->
+                      <input formControlName="address2" placeholder="Addres2" />
+                      <!--<label>Address 3:</label>-->
+                      <input formControlName="address3" placeholder="Addres3" />
+                      <!--<label>City:</label>-->
+                      <input formControlName="city" placeholder="City" />
+                      <!--<label>State:</label>-->
+                      <input formControlName="state" placeholder="State" />
+                      <!--<label>Zip:</label>-->
+                      <input formControlName="zip" placeholder="Zip" />
+                    </div>
+                  </fieldset>
                 </div>
-              </fieldset>
+                <button (click)="addNewAddress(user.controls.addresses)">Add new Address</button>
+              </div>
+
             </div>
-            <button (click)="addNewAddress(user.controls.addresses)">Add new Address</button>
-          </div>
+          <!--</p>-->
         </div>
-      </fieldset>
-    </div>
+      </div>
+      </div>
   </div><br>
 
 </form>
+  </main>
+</div>
 
-<pre>{{userFormData.value | json}}</pre>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Title </strong></h3>
+      <p> {{userFormData.value | json}}</p>
+    </div>
+  </div>
+ </div>
 
