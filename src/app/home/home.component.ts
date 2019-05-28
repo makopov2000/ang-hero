@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   user: User;
   userList: User[];
   addressList: Address[];
+  userListSave: User[];
+  addressListSave: Address[];
 
   constructor(private formBuilder: RxFormBuilder, private http: HttpClient, private fb: FormBuilder) {
     this.userFormData = this.fb.group({
@@ -97,8 +99,19 @@ export class HomeComponent implements OnInit {
       }))
   }
 
+  deleteUser(index) {
+    let control = <FormArray>this.userFormData.controls.users;
+    control.removeAt(index)
+  }
+
   deleteAddress(control, index) {
     control.removeAt(index)
+  }
+
+  postNewUser() {
+    const users = this.userFormData.controls.users.value;
+    this.userListSave = JSON.parse(JSON.stringify(users));
+    console.log('%%%%%%%%%%%%% --> Users to Save:', this.userListSave);
   }
 
   //////////////////////////////////////////////////////////////
