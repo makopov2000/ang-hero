@@ -7,6 +7,7 @@ import { TableInlineEditComponent } from './table-inline-edit/table-inline-edit.
 import { TableMatEditComponent } from './table-mat-edit/table-mat-edit.component';
 import { TableMatEdit2Component } from './table-mat-edit2/table-mat-edit2.component';
 import { FormTestComponent } from './form-test/form-test.component';
+import { HomeComponent } from './home/home.component'
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'form',
     component: FormTestComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: '',

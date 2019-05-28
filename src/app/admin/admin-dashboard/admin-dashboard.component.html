@@ -1,7 +1,7 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -20,15 +20,60 @@
 
           <!--/////////////////////////////////////////////////////-->
           <!--<button (click)="addTst()">Add</button>
-          <button (click)="getTst()">Get</button>
-          <div [formArrayName]="testArray" *ngFor="let tst of testArray.controls; let i = index">
-            <ng-container [formGroupName]="i">
-              <input placeholder="Address Line 1" formControlName="address1" type="text">
-              <input placeholder="Address Line 2" formControlName="address2">
-              <input placeholder="City" formControlName="city">
-              <input placeholder="State" formControlName="state">
-            </ng-container>
-          </div>-->
+  <button (click)="getTst()">Get</button>
+  <div [formArrayName]="testArray" *ngFor="let tst of testArray.controls; let i = index">
+    <ng-container [formGroupName]="i">
+      <input placeholder="Address Line 1" formControlName="address1" type="text">
+      <input placeholder="Address Line 2" formControlName="address2">
+      <input placeholder="City" formControlName="city">
+      <input placeholder="State" formControlName="state">
+    </ng-container>
+  </div>-->
+          <!--/////////////////////////////////////////////////////////////-->
+          <!--<div formArrayName="hobbies">
+    <h3>Hobbies:</h3>
+    <div *ngFor="let hobby of myForm.get('hobbies')['controls']; let i = index">
+      <div class="form-group">
+        <label>Bezeichnung:</label>
+        <input class="form-control" [formControl]="hobby.get('title')" />
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input class="custom-control-input" type="checkbox" [formControl]="hobby.get('risky')" id="customCheck1" />
+        <label class="custom-control-label" for="customCheck1">gefährlich?</label>
+      </div>
+    </div>
+  </div>-->
+          <!--///////////////////////////////////////////////-->
+
+          <!--<h1>Dirty Check & Reset the Form</h1>
+          <div class="row" [formGroup]="userFormGroup">
+            <div class="col-12 col-sm-6 col-xl-3 ">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" formControlName="firstName" class="form-control" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-3 ">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" formControlName="lastName" class="form-control" />
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3">
+
+    <div class="form-group" [formArrayName]="userFormGroup.controls.skills.controls[0]">
+      <label>Skill Name (Nested) </label>
+      <input type="text" formControlName="skillName" class="form-control" />
+    </div>
+    <hr />
+  </div>
+
+          </div>
+          <button class="btn btn-primary" (click)="reset()">Reset</button>
+          <button class="btn btn-primary" (click)="addNewArray()">Add Skill</button>-->
+
+
 
           <!--///////////////////////////////////////////////-->
 

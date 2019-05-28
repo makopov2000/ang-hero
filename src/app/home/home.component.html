@@ -1,0 +1,99 @@
+<div class="container">
+  <main class="col-12">
+
+    <div>SheetForm</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [formGroup]="rowFormGroup" *ngFor="let rowFormGroup of sheetFormGroup.controls.rows.controls">
+          <th scope="row"><input type="text" formControlName="name" class="form-control" /></th>
+          <td><input type="text" formControlName="quantity" class="form-control" /></td>
+          <td><input type="text" formControlName="purchasePrice" class="form-control" /></td>
+          <td><input type="text" formControlName="cost" class="form-control" readonly="true" /></td>
+        </tr>
+      </tbody>
+    </table>
+    <!--{{sheetData.totalCost}}-->
+    <button class="btn btn-primary" (click)="addRow()">Add Row</button>
+    <button class="btn btn-primary" (click)="printRow()">Print Row</button>
+  </main>
+</div>
+<br />
+
+<div class="container">
+  <main class="col-12">
+    <div>AddressForm</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [formGroup]="addressFormGroup" *ngFor="let addressFormGroup of userForm.controls.addresses.controls">
+          <th scope="row"><input type="text" formControlName="address1" class="form-control" /></th>
+          <td><input type="text" formControlName="address2" class="form-control" /></td>
+          <td><input type="text" formControlName="city" class="form-control" /></td>
+          <td><input type="text" formControlName="state" class="form-control" readonly="true" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary" (click)="addRow()">Add Row</button>
+    <button class="btn btn-primary" (click)="printRow()">Print Row</button>
+  </main>
+</div>
+
+<!--??????????????????????????????????????????????????????????-->
+<button (click)="setFormGroup2()" class="btn btn-primary">Dosplay Users</button><br><br>
+<button (click)="addNewUser()" class="btn btn-primary">Add new User</button><br><br>
+<form [formGroup]="userFormData">
+  <div formArrayName="users">
+    <div *ngFor="let user of userFormData.controls.users.controls; let i=index">
+      <fieldset class="border p-2">
+        <legend class="w-auto"><h3>User {{i+1}}: </h3></legend>
+        <div [formGroupName]="i">
+          <label>User Name: </label>
+          <input formControlName="name" /><span><button (click)="deleteUser(i)">Delete User</button></span>
+          <div formArrayName="addresses">
+            <div *ngFor="let address of user.controls.addresses.controls; let j=index">
+              <fieldset>
+                <legend><h4>Address {{j+1}}</h4></legend>
+                <div [formGroupName]="j">
+                  <div><button (click)="deleteAddress(user.controls.addresses, j)">Delete Address</button></div>
+                  <!--<label>Address 1:</label>-->
+                  <input formControlName="address1" placeholder="Addres1"/>
+                                                      <!--<label>Address 2:</label>-->
+                  <input formControlName="address2" placeholder="Addres2"/>
+                                                      <!--<label>Address 3:</label>-->
+                  <input formControlName="address3" placeholder="Addres3"/>
+                  <!--<label>City:</label>-->
+                  <input formControlName="city" placeholder="City"/>
+                  <!--<label>State:</label>-->
+                  <input formControlName="state" placeholder="State"/>
+                  <!--<label>Zip:</label>-->
+                  <input formControlName="zip" placeholder="Zip"/>
+                </div>
+              </fieldset>
+            </div>
+            <button (click)="addNewAddress(user.controls.addresses)">Add new Address</button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div><br>
+
+</form>
+
+<pre>{{userFormData.value | json}}</pre>
+

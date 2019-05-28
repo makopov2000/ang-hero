@@ -1,0 +1,24 @@
+[
+
+  {
+    "name": "Michael",
+    "addresses": [
+      {
+        "address1": "425 Geneva str",
+        "address2": "",
+        "address3": "",
+        "city": "Glendale",
+        "state": "CA",
+        "zip": "91206"
+      },
+      {
+        "address1": "527 Kenwood str.",
+        "address2": "",
+        "address3": "",
+        "city": "Burbank",
+        "state": "CA",
+        "zip": "91207"
+      }
+    ]
+  }
+]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { User, Address } from './model'
 
 export class Hero {
   address1: string;
@@ -43,6 +44,7 @@ export class AdminDashboardComponent implements OnInit {
   items: FormArray;
 
   testArray: FormArray;
+  userFormGroup: FormGroup;
 
   /////////////////////////////////////
 
@@ -65,8 +67,30 @@ export class AdminDashboardComponent implements OnInit {
 
     this.testArray = new FormArray([]);
 
+    //let user = new User();
+    //user.firstName = "John";
+    //user.lastName = "some";
+    //user.skills = new Array<Skill>();
+    //let skill = new Skill();
+    //skill.skillName = "Angular";
+    //skill.skillLastName = "some";
+    //user.skills.push(skill);
+    //this.userFormGroup = this.formBuilder.group(user);
+
   }
 
+  //reset() {
+  //  this.userFormGroup.reset();
+  //}
+
+  //addNewArray() {
+  //  const skills = this.userFormGroup.get('skills') as FormArray;
+  //  let skill = new Skill();
+  //  skill.skillName = "Angular1";
+  //  skill.skillLastName = "some1";
+  //  this.items.push(skills);
+  //}
+   
   /////////////////////////////////////////
 
 
@@ -121,9 +145,10 @@ export class AdminDashboardComponent implements OnInit {
     const res = this.form.controls.credentials.value;
     console.table('==>> Creds: ' + res);
     let resString = JSON.stringify(res);
-    console.table('==>> StringFY: ' + resString);
+    console.table('==>> StringFY: ' + resString   );
     let resParse = JSON.parse(resString);
     console.table('==>> Parse: ' + resParse);
+    
     this.heroes = resParse;
     this.heroes.forEach(h => {
       console.table('==>> Heroes: ' + h.address1);
@@ -132,6 +157,12 @@ export class AdminDashboardComponent implements OnInit {
     });
 
     console.log('=================Address:' + resParse[0].address1);
+
+    console.log('***************** Object :' + Object.values(res));
+
+    for (let k of Object.keys(resParse)) {
+      console.log(`Hey ${resString[k]}!`);
+    }
 
     JSON.parse(resString, (k, v) => {
 

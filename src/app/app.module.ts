@@ -8,7 +8,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module'
 import { SdkModule } from './sdk/sdk.module';
 import { DatePipe, JsonPipe, SlicePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +30,7 @@ import { cHttpDataService} from './table-mat-edit2/httpGet.service';
 import { AspDatePipe} from './table-mat-edit2/aspDate.pipe';
 import { HighlightTxtPipe} from './table-mat-edit2/highlight.pipe';
 import { FormTestComponent } from './form-test/form-test.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -46,6 +49,7 @@ import { FormTestComponent } from './form-test/form-test.component';
     AspDatePipe,
     HighlightTxtPipe,
     FormTestComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,8 @@ import { FormTestComponent } from './form-test/form-test.component';
     MatIconModule,
     MatButtonModule,
     SdkModule,
-    HttpClientModule
+    HttpClientModule,
+    RxReactiveFormsModule
   ],
   providers: [cHttpDataService, JsonPipe, DatePipe, SlicePipe, AspDatePipe, HighlightTxtPipe,
   ],

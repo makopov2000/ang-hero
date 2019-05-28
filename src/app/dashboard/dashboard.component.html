@@ -16,7 +16,36 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+
+
+
+          <h2>FormBuilder</h2>
+          <form [formGroup]="form">
+            <div>
+              <button (click)="addAddress()">Add Address</button>
+              <button (click)="setNew()">Delete Address</button>
+              <button (click)="resetAddress()">Reset Address</button>
+              <button (click)="getAddress()">Console Address</button>
+            </div>
+
+            <ng-container>
+              <input placeholder="First Name" formControlName="firstName">
+              <input placeholder="Last Name" formControlName="lastName">
+            </ng-container>
+
+            <!--<div formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index">-->
+            <div formArrayName="addresses" *ngFor="let address of form.get('addresses').controls; let i = index">
+              <ng-container [formGroupName]="i">
+                <input placeholder="Address Line 1" formControlName="address1" type="text">
+                <input placeholder="Address Line 2" formControlName="address2">
+                <input placeholder="City" formControlName="city">
+                <input placeholder="State" formControlName="state">
+              </ng-container>
+            </div>
+
+
+          </form>
+
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
